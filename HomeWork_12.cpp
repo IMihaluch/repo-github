@@ -38,16 +38,16 @@ int main() {
 
 // 4. Написать рекурсивную функцию бинарного поиска в дереве хранящемся в узлах, а не в массиве//
 
-	Wood_Functions trust;
-	trust. enter(0); trust.enter(3); trust.enter(4); trust.enter(10); trust.enter(14);
-	trust.enter(6); trust.enter(5); trust.enter(17); trust.enter(11); trust.enter(9);
+	Wood_Functions tree ;
+	tree.enter(tree, 0); tree.enter(tree, 3); tree.enter(tree, 4); tree.enter(tree, 10); tree.enter(tree, 14);
+	tree.enter(tree, 6); tree.enter(tree, 5); tree.enter(tree, 17); tree.enter(tree, 11); tree.enter(tree, 9);
 	
-		trust.balance();
-	              trust.print(); 
+		tree.balance();
+	              tree.print(); 
 
 	int arr[] = {5,8,10,19,24,0,1,7,22,9};
 	for(int a = 0; a < 10; a++) {
-		cout << arr[a] << " is " << (trust.find(arr[a]) ? "available" : "no available") << "\n";
+		cout << arr[a] << " is " << (tree.find(arr[a]) ? "available" : "no available") << "\n";
 	}
 
 
