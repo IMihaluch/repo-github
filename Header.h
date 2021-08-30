@@ -4,9 +4,14 @@
 #pragma warning(disable:4996)
 #endif
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
+#include <cstdlib>
 #include <string.h>
+#include <cstring>
 #include <math.h>
 #include <time.h>
 #include <stdarg.h>
+#include <string>
+#include <iso646.h>
 #include <stddef.h>
