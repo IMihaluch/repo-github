@@ -1,178 +1,137 @@
 #include <iostream>
-#include <cassert>
-#include <cmath>
-#include <cstdint>
+#include <cstring>
+
+//===========================================================================================================//
+//1.Создать класс Person(человек) с полями : имя, возраст, пол и вес.Определить методы переназначения имени,//
+//  изменения возраста и веса.Создать производный класс Student(студент), имеющий поле года обучения.      //
+// Определить методы переназначения и увеличения этого значения.Создать счетчик количества созданных      //
+// студентов.В функции main() создать несколько студентов.По запросу вывести определенного человека.     //
+//======================================================================================================//
 
 using namespace std;
 
-    ///=====================================================================================================================================================///
-   ///PART-1.Создать класс Power,который содержит два вещественных числа.Этот класс должен иметь две переменные-члена для хранения этих вещественных чисел ///
-  ///Еще создать два метода: один с именем set, который позволит присваивать значения переменным, второй — calculate, который будет выводить результат    ///
- /// возведения первого числа в степень второго числа. Задать значения этих двух чисел по умолчанию.                                                     ///
-/// ====================================================================================================================================================///
-
-class Power
-{    
-private:
-
-    double numb;
-    double power_numb;
-    ///Константные типы данных должны быть инициализированы во время объявления.///
-        ///Если это константные переменные-члены, то инициализировать их с помощью конструктора нельзя. Для решения этой проблемы используются///
-        ///списки инициализации членов. Такой список располагается сразу после параметров конструктора и начинается с двоеточия (:), ///
-        /// а затем в круглых скобках указывается значение для каждой переменной. Список инициализаторов не заканчивается точкой с запятой.///
-public:
-    Power() : numb(0.0), power_numb(0.0) 
-    {
-        cout << "Power: " << endl;
-    }
-    Power(double num, double pow_nu) : numb(num), power_numb(pow_nu) 
-            {
-        cout << "Power: " << endl;
-    }
-    void set(double num, double pow_nu)
-    {
-        assert(pow_nu > 0);
-        numb = num;
-        power_numb = pow_nu;
-    }
-    ~Power()
-    {
-    }
-    void calculate() 
-    {
-        cout <<"Result of raising a number " << numb <<" to the power of "  <<  power_numb << " = " << pow(numb, power_numb) << endl;
-    }
-};
-///=============================================================================================================================================///
-///PART-2. Написать класс с именем RGBA, который содержит 4 переменные-члена типа std::uint8_t: m_red, m_green, m_blue и m_alpha///
-///(#include cstdint для доступа к этому типу). Задать 0 в качестве значения по умолчанию для m_red, m_green, m_blue и 255 для m_alpha.///
-///Создать конструктор со списком инициализации членов, который позволит пользователю передавать значения для m_red, m_blue, m_green и m_alpha./// 
-///Написать функцию print(), которая будет выводить значения переменных-членов.///
-///===========================================================================================================================================///
-
-class RGBA
+class Person 
 {
-private:
-
-    std::uint8_t m_red;
-    std::uint8_t m_green;
-    std::uint8_t m_blue;
-    std::uint8_t m_alpha;
 
 public:
+    string name;
+    int age;
+    double weight;
+    const string gender;
 
-    RGBA(std::uint8_t red = 0, std::uint8_t green = 0, std::uint8_t blue = 0, std::uint8_t alpha = 255) : m_red{red}, m_green{green}, m_blue{blue}, m_alpha{alpha}
-    {
-    }
-    void print() const
-    {
-        std::cout << "Red: " << (int)m_red << " Green: " << (int)m_green << " Blue: " << (int)m_blue << " Alpha: " << (int)m_alpha << std::endl;
-    }
+
+ public:
+    Person(const string gender, string name, int age = 0, double weight = 0) : name(name), age(age), gender(gender), weight(weight) { }
+
+    void set_Name(string name) { name = name; }
+    string getName() const { return name; }
+
+    void set_Age(int age) { age = age; }
+    int getAge() const { return age; }
+
+    void set_Weight(double weight) { weight = weight; }
+    double getWeight() const { return weight; }
+    
+    ~Person() { }
 };
 
-///===========================================================================================================================================///
-///PART-3. Написать класс, который реализует функциональность стека.Класс Stack должен иметь :///
-///private - массив целых чисел длиной 10;///
-///private целочисленное значение для отслеживания длины стека;///
-///public - метод с именем reset(), который будет сбрасывать длину и все значения элементов на 0;///
-///public - метод с именем push(),который будет добавлять значение в стек.push()должен возвращать значение false,если массив уже заполнен,и true/// 
-/// в противном случае;///
-///public - метод с именем pop() для вытягивания и возврата значения из стека.Если в стеке нет значений, то должно выводиться предупреждение;///
-///public - метод с именем print(), который будет выводить все значения стека.///
-///=========================================================================================================================================///
-
-class StackArray 
- 
-{    
-private:
-    int Array[10]; ///массив целых чисел длиной 10;///
- 
-@Semyon25 Semyon25 5 days ago 
-В третьем задании число 10 лучше заменить на константу.
-
-@IMihaluch	Reply…
-    int length; ///целочисленное значение для отслеживания длины стека;///
-
-public:
-
-    void reset() ///- метод с именем reset(), который будет сбрасывать длину и все значения элементов на 0;///
-    {
-        length = 0;
-        for (int i = 0; i < 10; i++) 
-        {
-            Array[i] = 0;
-        }
-    }
-    bool push(int value) ///- метод с именем push(), который будет добавлять значение в стек.push() должен возвращать значение false, если массив уже заполнен, и true///
-    {
-        if (length == 10)
-            return false;
-        Array[length++] = value;
-        return true;
-    }
-    int pop() ///- метод с именем pop() для вытягивания и возврата значения из стека.Если в стеке нет значений, то должно выводиться предупреждение;///
-    {
-        if (length == 0) {
-            cout << "Stack is empty!" << endl;
-        }
-        else {
-            return Array[--length];
-        }
-    }
-    void print() ///- метод с именем print(), который будет выводить все значения стека.///
-    {
-
-        cout << "(";
-        for (int i = 0; i < length; i++) 
-        {
-            cout << Array[i] << " ";
-        }
-        cout << ")" << endl;
-    }
-};
-
-int main(const int argc, const char** argv)
+class Student : public Person 
 {
-    cout << endl <<"PART-1. ===================================================" << endl << endl; 
-            {
-        Power pow1;
-        pow1.calculate();
-        Power pow2;
-        pow2.set(2, 3);
-        pow2.calculate();
-        Power pow3(3, 7);
-        pow3.calculate();
+
+public:
+    Student(const string gender = " ", string name = " ", int age = 0, double weight = 0, int year = 0) : Person(gender, name, age, weight), yearStudy(year)
+    {
+        counter++;
+    }
+    void set_YearStudy(int year) { yearStudy = year; }
+    
+    
+    void increaseYS() 
+    { 
+        yearStudy++; 
     }
 
+public:
 
+    static int counter;
+    int yearStudy;
+
+    ~Student() {}
+    
+};
+
+int Student::counter = 0;
+
+
+void print(const Student& student)
+{
+   cout << "Name: " << student.name << "\n" << "Gender: " << student.gender << "\n" << "Age: " << student.age << " years\n" <<
+       "Weight: " << student.weight << "\n" << "Year education: " << student.yearStudy << " year." << endl;
+
+}
+
+//==============================================================================================================//
+//PART-2.Создать классы Apple(яблоко) и Banana(банан), которые наследуют класс Fruit(фрукт).У Fruit есть две    //
+//переменные - члена : name(имя) и color(цвет).Добавить новый класс GrannySmith, который наследует класс Apple.//
+//============================================================================================================//
+
+class Fruit
+{
+protected:
+    string name;
+    string color;
+public:
+    Fruit(string name, string color) : name(name), color(color) { }
+    
+    string getName() const { return name; }
+    string getColor() const { return color; }
+    ~Fruit() { }
+};
+class Apple : public Fruit
+{
+public:
+    Apple(string color) : Fruit("apple", color) { }
+    ~Apple() { }
+};
+class Banana : public Fruit
+{
+public:
+    Banana() : Fruit("banana", "yellow") { }
+    ~Banana() { }
+};
+
+class GrannySmith : public Apple
+{
+public:
+    GrannySmith() : Apple("green") { }
+    string getName() 
+    {
+        return "GrannySmith ";
+    }
+    ~GrannySmith() { }
+};
+int main() 
+{
+    cout << endl << "PART-1. ===================================================" << endl << endl; 
+    {
+        Student Ivan("male");
+        Ivan.set_Name("Petrov Ivan Mihailovich");
+        Ivan.set_Age(23);
+        Student Mihail("male", "Zorov Mihail Konstantinovich", 37, 81, 2021);
+        Student Marina("female", "Nikitenko Marina Vladimirovna", 41);
+        Marina.set_YearStudy(1998);
+
+        print(Mihail);
+    }
     cout << endl << "PART-2. ===================================================" << endl << endl; 
     {
-        RGBA rgb1;
-        rgb1.print();
-        RGBA rgb2{10, 54, 178, 237};
-        rgb2.print();
+        Apple a("red");
+        Banana b;
+        GrannySmith c;
+        std::cout << "My " << a.getName() << " is " << a.getColor() << ".\n";
+        std::cout << "My " << b.getName() << " is " << b.getColor() << ".\n";
+        std::cout << "My " << c.getName() << " is " << c.getColor() << ".\n";
     }
-
-
-    cout << endl << "PART-3. ===================================================" << endl << endl; 
-    {
-        StackArray stack;
-        stack.reset();
-        stack.print();
-        stack.push(3);
-        stack.push(7);
-        stack.push(5);
-        stack.print();
-
-        stack.pop();
-        stack.print();
-
-        stack.pop();
-        stack.pop();
-        stack.print();
-    }
-    cout << endl;
-
+    
     return 0;
 }
