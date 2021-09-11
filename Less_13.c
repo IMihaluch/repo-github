@@ -200,14 +200,14 @@ int main()
     cout << "PART-3. ====================================" << endl << endl;
      
     int apex;
-    std::cout << "Input elements from 1 to 12): ";
-    std::cin >> apex;
+    cout << "Input elements from 1 to 12): ";
+    cin >> apex;
 
-    std::cout << "Travers graph: ";
+    cout << "Travers graph: ";
     int calc = -1;
     RecursiveTransition(apex - 1, calc);
-    std::cout << endl;
-    std::cout << "Number of adjacent vertices: " << calc << std::endl;
+    cout << endl;
+    cout << "Number of adjacent vertices: " << calc << endl;
         
     return 0;
 }
