@@ -3,14 +3,15 @@
 #include <cmath>
 
 using namespace std;
+
 //================================================//
 //PART1-1. обход в глубину с использованием стека//
 //==============================================//
+
 const int n = 12;
 bool visitedR[n];
 int stack[n];
-int matrix[n][n] =
-{
+int matrix[n][n] ={
      {0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0},
      {0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1},
      {0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
@@ -66,8 +67,6 @@ void reset1mas(int* arr, int size)
         arr[i] = 0;
     }
 }
-
-
 int visitedD[n] = { 0 };
 void DepthFirstTravUsaStack(int start)
 {
@@ -86,9 +85,11 @@ void DepthFirstTravUsaStack(int start)
     }
     move(start);
 }
+
 //===============================================================================================//
 //PART-2. Моделируем робот поисковой системы. Дан готовый простой граф с циклическими связями...// 
 //=============================================================================================//
+
 void TraversD(int start = 0) 
 {
     int next;
@@ -145,9 +146,11 @@ void Referchek()
     reset1mas(link, n);
     reset1mas(visitedD, n);
 }
+
 //=========================================================================================//
 //PART-3. обход графа рекурсивной функцией(с подсчётом только смежных со стартовой вершин)//
 //=======================================================================================//
+
 void RecursiveTransition(int vertex, int& count)
 {
     visitedR[vertex] = true;
@@ -184,7 +187,7 @@ int main()
     reset1mas(link, n);
 
     cout << endl;
-    // TASK-2 ====================================
+    
     cout << "PART-2. ====================================" << endl << endl;
 
     DepthFirstTravUsaStack(3);
@@ -195,6 +198,7 @@ int main()
     Referchek();
 
     cout << "PART-3. ====================================" << endl << endl;
+     
     int apex;
     std::cout << "Input elements from 1 to 12): ";
     std::cin >> apex;
