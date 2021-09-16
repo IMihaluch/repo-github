@@ -1,7 +1,8 @@
 #include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <vector>  
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <ctime>
 
 using namespace std;
 
@@ -104,3 +105,49 @@ public:
     }
     friend ostream& operator<< (ostream& out, const GenericPlayer& aGenericPlayer);
 };
+//===============================================================================================================//
+//PART-5. Написать функцию для ввода имен игроков. Создается объект класса Game и запускается игровой процесс.  //
+//Предусмотреть возможность повторной игры.                                                                    //
+//============================================================================================================//
+
+void part_5()
+{
+    cout << "\t\tLet's play Blackjack!\n\n";
+
+    int PlayersValue = 0;
+    while (PlayersValue < 1 || PlayersValue > 7)
+    {
+        cout << "How many players will there be? (1 - 7): ";
+        cin >> PlayersValue;
+    }
+
+    vector<string> Players_N;
+    string name;
+    for (int i = 0; i < PlayersValue; ++i)
+    {
+        cout << "Enter player name: ";
+        cin >> name;
+        Players_N.push_back(name);
+    }
+    cout << endl;
+
+    //Предусмотреть возможность повторной игры.
+    Game rep_Game(Players_N);
+    char replay = 'y';
+    while (replay != 'n' && replay != 'N')
+    {
+        rep_Game.Play();
+        cout << "\nDo you want to play again? (Y/N): ";
+        cin >> replay;
+    }
+}
+
+int main()
+{
+cout << endl << "PART3-5.\n=====================================================" << endl << endl;
+{
+	part_5();
+}
+
+	return 0;
+}
